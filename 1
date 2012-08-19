@@ -2,7 +2,6 @@ require 'sinatra/base'
 require 'github_hook'
 require 'ostruct'
 require 'time'
-require 'yaml'
 
 class Blog < Sinatra::Base
   use GithubHook
@@ -36,7 +35,7 @@ class Blog < Sinatra::Base
     articles << article
   end
   
-  articles.sort_by! { |article| article.date }
+  articles.sort_by? { |article| article.date }
   articles.reverse!
 
   get '/' do

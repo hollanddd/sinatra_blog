@@ -1,12 +1,12 @@
 require 'sinatra/base'
 require 'time'
 
-class GitHubHook < Sinatra::Base
+class GithubHook < Sinatra::Base
   def self.parse_git
     # parse hash and date from the git log command.
-    sha1, date = 'git log HEAD~1..HEAD --pretty=format:%h^%ci'.strip.split('^')
+    sha1, date = 'git log HEAD~1..HEAD --pretty="format:%h^%ar"'.strip.split('^')
     set :commit_hash, sha1
-    set :commit_date, Time.parse(date)
+    set :commit_date, date
   end
 
   set(:autopull) { production? }
